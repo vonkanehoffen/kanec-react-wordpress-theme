@@ -2,12 +2,15 @@ import axios from 'axios';
 import store from '../store';
 import { getUsersSuccess, deleteUserSuccess, userProfileSuccess } from '../actions/user-actions';
 
+// Start API server with:
+// json-server --watch data/db.json --port 3002
+
 /**
  * Get all users
  */
 
 export function getUsers() {
-  return axios.get('http://localhost:3001/users')
+  return axios.get('http://localhost:3002/users')
     .then(response => {
       store.dispatch(getUsersSuccess(response.data));
       return response;
@@ -19,7 +22,7 @@ export function getUsers() {
  */
 
 export function searchUsers(query = '') {
-  return axios.get('http://localhost:3001/users?q='+ query)
+  return axios.get('http://localhost:3002/users?q='+ query)
     .then(response => {
       store.dispatch(getUsersSuccess(response.data));
       return response;
@@ -31,7 +34,7 @@ export function searchUsers(query = '') {
  */
 
 export function deleteUser(userId) {
-  return axios.delete('http://localhost:3001/users/' + userId)
+  return axios.delete('http://localhost:3002/users/' + userId)
     .then(response => {
       store.dispatch(deleteUserSuccess(userId));
       return response;
@@ -50,7 +53,7 @@ export function getProfile(userId) {
   let profile = {};
 
   // Get the user data from our local database.
-  return axios.get('http://localhost:3001/users/' + userId)
+  return axios.get('http://localhost:3002/users/' + userId)
     .then(response => {
 
       let user = response.data;

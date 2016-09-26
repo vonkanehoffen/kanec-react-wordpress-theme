@@ -3,8 +3,15 @@
 import 'styles/main.scss';
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './app/store';
+import router from './app/router';
 
-import Index from 'components/Index/Index';
-
-render(<Index items={[1,2,3]} />, document.getElementById('js-main'));
+// Provider is a top-level component that wrapps our entire application, including
+// the Router. We pass it a reference to the store so we can use react-redux's
+// connect() method for Component Containers.
+ReactDOM.render(
+  <Provider store={store}>{router}</Provider>,
+  document.getElementById('js-main')
+);
