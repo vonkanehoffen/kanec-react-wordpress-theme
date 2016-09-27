@@ -5,7 +5,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import MainLayout from './layouts/main-layout';
 
 // Pages
-import BookmarkListContainer from './containers/bookmark-list-container';
+import BookmarkListContainer from './containers/bookmark-list';
 
 export default (
   <Router history={browserHistory}>
