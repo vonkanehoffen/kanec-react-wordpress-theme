@@ -42,22 +42,26 @@
       "worksOn": "Babel"
     }
   ],
-  "widgets": [
+  "bookmarks": [
     {
       "id": 1,
-      "name": "Widget One"
+      "title": "Leveling Up with React: Redux",
+      "url": "https://css-tricks.com/learning-react-redux/"
     },
     {
       "id": 2,
-      "name": "Widget Two"
+      "title": "Mixcloud",
+      "url": "https://www.mixcloud.com/"
     },
     {
       "id": 3,
-      "name": "Widget Three"
+      "title": "17. React Redux with Dan Abramov",
+      "url": "https://www.youtube.com/watch?v=VJ38wSFbM3A"
     },
     {
       "id": 4,
-      "name": "Widget Four"
+      "title": "Creating React templates in WebStorm",
+      "url": "http://www.davidboyne.co.uk/2016/05/24/react-templates-in-webstorm.html"
     }
   ]
 }
