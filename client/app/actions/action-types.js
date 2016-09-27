@@ -1,0 +1,2 @@
+// Bookmarks
+export const GET_BOOKMARKS_SUCCESS = 'GET_BOOKMARKS_SUCCESS';

@@ -67,6 +67,11 @@
       "id": 5,
       "title": "Async Actions",
       "url": "http://redux.js.org/docs/advanced/AsyncActions.html"
+    },
+    {
+      "id": 6,
+      "title": "Redux Async Example",
+      "url": "https://github.com/reactjs/redux/tree/master/examples/async"
     }
   ]
 }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as bookmarksApi from '../api/bookmarks-api'
+import { fetchBookmarks } from '../actions/bookmark-actions'
 import Bookmark from '../components/bookmark.js'
+import store from '../store'
 
 class BookmarkListContainer extends Component {
   componentDidMount() {
-    bookmarksApi.getBookmarks();
+    store.dispatch(fetchBookmarks());
   }
   render() {
     return(
