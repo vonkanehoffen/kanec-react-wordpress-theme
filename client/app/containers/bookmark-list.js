@@ -10,17 +10,20 @@ class BookmarkListContainer extends Component {
     store.dispatch(fetchBookmarks());
   }
   render() {
-    const fetchingMsg = <CircularProgress />;
+    const { isFetching, bookmarks } = this.props;
     return(
       <div className="bookmarks">
         <h2>Bookmark List Container</h2>
-        {this.props.isFetching ? fetchingMsg : this.props.bookmarks.map( (item, key) => {
-          return <Bookmark
-            key={key}
-            title={item.title}
-            url={item.url}
-            />
-        })}
+        { isFetching ?
+          <CircularProgress /> :
+          bookmarks.map( (item, key) => {
+            return <Bookmark
+              key={key}
+              title={item.title}
+              url={item.url}
+              />
+            })
+        }
       </div>
     )
   }
