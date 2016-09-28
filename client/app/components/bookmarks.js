@@ -15,6 +15,8 @@ const Bookmarks = ({bookmarks}) => (
   </div>
 );
 
-Bookmarks.propTypes = {}
+Bookmarks.propTypes = {
+  bookmarks: PropTypes.array.isRequired
+}
 
 export default Bookmarks
