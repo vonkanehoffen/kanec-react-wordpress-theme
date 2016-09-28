@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchBookmarks } from '../actions/bookmark-actions'
 import Bookmark from '../components/bookmark.js'
+import CircularProgress from 'material-ui/CircularProgress';
 import store from '../store'
 
 class BookmarkListContainer extends Component {
@@ -9,11 +10,11 @@ class BookmarkListContainer extends Component {
     store.dispatch(fetchBookmarks());
   }
   render() {
+    const fetchingMsg = <CircularProgress />;
     return(
       <div className="bookmarks">
         <h2>Bookmark List Container</h2>
-        <pre>{JSON.stringify(this.props.bookmarks, null, 2)}</pre>
-        {this.props.bookmarks.map( (item, key) => {
+        {this.props.isFetching ? fetchingMsg : this.props.bookmarks.map( (item, key) => {
           return <Bookmark
             key={key}
             title={item.title}
@@ -27,7 +28,9 @@ class BookmarkListContainer extends Component {
 
 const mapStateToProps = (store) => {
   return {
+    isFetching: store.bookmarkState.isFetching,
     bookmarks: store.bookmarkState.items
   }
-}
+};
+
 export default connect(mapStateToProps)(BookmarkListContainer);
