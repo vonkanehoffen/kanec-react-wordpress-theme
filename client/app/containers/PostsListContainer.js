@@ -22,7 +22,7 @@ class PostsListContainer extends Component {
         return (
             <div className="posts">
                 {this.state.posts.map( (post, i) => {
-                    return <BlogPost post={post} key={i} />
+                    return <BlogPost post={post} key={i} expanded={false} />
                 })}
             </div>
         );

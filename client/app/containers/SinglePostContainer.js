@@ -23,7 +23,7 @@ class BlogContainer extends Component {
             <div className="posts">
                 <h3>SinglePostContainer</h3>
                 {this.state.posts.map( (post, i) => {
-                    return <BlogPost post={post} key={i} />
+                    return <BlogPost post={post} key={i} expanded={true} />
                 })}
             </div>
         );
