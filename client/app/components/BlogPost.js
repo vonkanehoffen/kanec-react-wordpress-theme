@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import { Link } from 'react-router'
 
 const BlogPost = (props) => {
     const {
@@ -7,7 +8,7 @@ const BlogPost = (props) => {
     return (
         <div className="BlogPost">
             Blog post here:
-            <h1><a href={link}>{title.rendered}</a></h1>
+            <h1><Link to={`/blog/${slug}`}>{title.rendered}</Link></h1>
             <p>Probably use slug for link? {slug}</p>
             <div className="content" dangerouslySetInnerHTML={{__html: content.rendered}} />
             <pre>{JSON.stringify(props.post, null, 2)}</pre>

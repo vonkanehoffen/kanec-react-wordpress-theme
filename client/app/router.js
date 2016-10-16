@@ -5,14 +5,14 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import MainLayout from './containers/MainLayout';
 
 // Pages
-import BlogContainer from './containers/BlogContainer';
-import PageContainer from './containers/PageContainer';
+import HomeContainer from './containers/PostsListContainer';
+import SinglePostContainer from './containers/SinglePostContainer';
 
 export default (
     <Router history={browserHistory}>
         <Route component={MainLayout}>
-            <Route path="/" component={BlogContainer} />
-            <Route path="/page" component={PageContainer} />
+            <Route path="/" component={HomeContainer} />
+            <Route path="/blog/:slug" component={SinglePostContainer} />
         </Route>
     </Router>
 );

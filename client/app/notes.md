@@ -15,3 +15,53 @@ You can API call:
 
 http://kanec.co.uk/wp-json/wp/v2/posts?slug=game-thrones-vfx-reel
 
+
+Component plan:
+
+```
+Main Layout
+	Navigation
+		(Home link)
+		SearchForm
+	Footer
+		(social links & contact)
+	/
+		HomeContainer
+			HomeSplash
+			PostsList
+			LoadMorePosts button
+	/blog/:slug
+		SinglePostContainer
+			FeaturedImage
+			SinglePost
+			PostsList (related posts, by tag?)
+	/search/:s
+		SearchResultsContainer
+			PostsList
+```
+Store:
+```
+posts: [
+    {
+        slug: what-ever
+        title: { rendered: "What Ever" }
+        content: { rendered: "sdfsfsdfsdf" }
+    },
+    {
+        slug: another-one
+        title: { rendered: "Another One" }
+        content: { rendered: "sdfsfsdfsdf" }
+    },
+]
+```
+
+ActionCreators
+ - Async
+   - getLatestPosts()
+   - getSinglePost()
+   
+ 
+Reducer Actions
+ - FETCH_POSTS_REQUEST
+ - FETCH_POSTS_SUCCESS (data)
+ - FETCH_POSTS_FAILURE

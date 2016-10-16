@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import * as wpApi from '../api/wpApi';
 import BlogPost from '../components/BlogPost';
 
-class BlogContainer extends Component {
+class PostsListContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -29,4 +29,4 @@ class BlogContainer extends Component {
     }
 }
 
-export default BlogContainer;
+export default PostsListContainer;
