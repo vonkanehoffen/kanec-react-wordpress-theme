@@ -5,7 +5,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import MainLayout from './containers/MainLayout';
 
 // Pages
-import HomeContainer from './containers/PostsListContainer';
+import HomeContainer from './containers/HomeContainer';
 import SinglePostContainer from './containers/SinglePostContainer';
 
 export default (

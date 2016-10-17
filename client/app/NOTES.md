@@ -41,6 +41,11 @@ Main Layout
 ```
 Store:
 ```
+currentPost: <slug> (or false for home),
+postStatus: {
+    'what-ever': REQUESTING,
+    'another-one': LOADED
+},
 posts: [
     {
         slug: what-ever
@@ -53,6 +58,17 @@ posts: [
         content: { rendered: "sdfsfsdfsdf" }
     },
 ]
+```
+...or combine status with main posts[] like:
+```
+currentPost: <slug> (or false for home),
+posts: [
+    {
+        status: REQUESTING || LOADED || ERROR
+        slug: what-ever, (map all these from WP API response)
+        title: What Ever,
+        content: content
+    }, ...
 ```
 
 ActionCreators
