@@ -1,33 +1,33 @@
 import React, {Component} from 'react';
-import * as wpApi from '../api/wpApi';
+import { connect } from 'react-redux'
+import { getPosts } from '../actions'
 import BlogPost from '../components/BlogPost';
 
 class BlogContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isFetching: false,
-            posts: []
-        };
-    }
-
     componentDidMount() {
-        wpApi.get('posts', {slug: this.props.params.slug}).then((json) => {
-            this.setState({posts: json});
-        })
+        const { dispatch, params } = this.props;
+        dispatch(getPosts({
+            slug: params.slug
+        }));
     }
 
     render() {
+        const { posts } = this.props
         return (
             <div className="posts">
                 <h3>SinglePostContainer</h3>
-                {this.state.posts.map( (post, i) => {
+                {posts && posts.map( (post, i) => {
                     return <BlogPost post={post} key={i} expanded={true} />
                 })}
             </div>
-        );
+        )
     }
 }
 
-export default BlogContainer;
+const mapStateToProps = state => ({
+    isFetching: state.isFetching,
+    posts: state.posts
+})
+
+export default connect(mapStateToProps)(BlogContainer)

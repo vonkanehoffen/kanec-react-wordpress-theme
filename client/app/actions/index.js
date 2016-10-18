@@ -20,6 +20,6 @@ export const setCurrentPost = (currentPost) => ({
 
 export const getPosts = params => dispatch => {
     dispatch(requestPosts())
-    return wpApi.get('posts')
+    return wpApi.get('posts', params)
         .then(json => dispatch(receivePosts(json)))
 }
