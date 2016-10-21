@@ -2,14 +2,17 @@ import { combineReducers } from 'redux'
 
 import {
     REQUEST_POSTS,
-    RECEIVE_NEW_POSTS,
-    RECEIVE_ADDITIONAL_POSTS,
-    SET_CURRENT_POST
+    RECEIVE_LATEST_POSTS,
+    RECEIVE_LOAD_MORE_POSTS,
+    RECEIVE_SINGLE_POST,
+    RECEIVE_POSTS_ERROR
 } from '../actions'
 
 const postsReducer = ( state = {
     isFetching: false,
-    currentPost: false,
+    gotLatest: false,
+    nextPage: 1,
+    error: false,
     posts: []
 }, action ) => {
     switch(action.type) {
@@ -17,19 +20,28 @@ const postsReducer = ( state = {
             return Object.assign({}, state, {
                 isFetching: true
             })
-        case RECEIVE_NEW_POSTS:
+        case RECEIVE_LATEST_POSTS:
             return Object.assign({}, state, {
                 isFetching: false,
-                posts: action.posts
-            }
-        case RECEIVE_ADDITIONAL_POSTS:
-            return Object.assign({}, state, {
-                isFetching: false,
-                posts: [...state.posts, ...action.posts]
+                posts: action.posts,
+                gotLatest: Date.now(),
+                nextPage: state.nextPage++
             })
-        case SET_CURRENT_POST:
+        case RECEIVE_LOAD_MORE_POSTS:
             return Object.assign({}, state, {
-                currentPost: action.currentPost
+                isFetching: false,
+                posts: [...state.posts, ...action.posts],
+                nextPage: state.nextPage++
+            })
+        case RECEIVE_SINGLE_POST:
+            return Object.assign({}, state, {
+                isFetching: false,
+                posts: [...state.posts, ...action.post],
+            })
+        case RECEIVE_POSTS_ERROR:
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: action.error
             })
         default:
             return state

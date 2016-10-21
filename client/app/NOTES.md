@@ -15,6 +15,29 @@ You can API call:
 
 http://kanec.co.uk/wp-json/wp/v2/posts?slug=game-thrones-vfx-reel
 
+# Scenarios:
+
+Entry on homepage: Init store with posts/
+Entry on sub page: Init store with posts?slug=:slug
+Navigation to home from sub: Check if latest posts in store. If not, load.
+Navigation to sub from home: Display sub (it'll be there)
+
+so
+
+HomeContainer:
+    Is store empty?
+        Y: Get latest posts and populate
+        N: Is GotLatest set? 
+            Y: Do nothing
+            N: Get latest and populate
+    Load more posts button:
+        Get next page
+SinglePostContainer:
+    Is post in store?
+        Y: Do nothing
+        N: Get it and replace store (it's obviously a new visitor)
+
+
 
 Component plan:
 

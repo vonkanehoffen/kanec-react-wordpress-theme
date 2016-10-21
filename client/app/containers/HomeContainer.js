@@ -1,20 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { getPosts } from '../actions'
+import { getLatestPosts } from '../actions'
 import PostsList from '../components/PostsList'
 
 class HomeContainer extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(getPosts());
+        dispatch(getLatestPosts());
     }
 
     render() {
-        const { posts } = this.props
-        console.log(posts);
+        const { posts, isFetching } = this.props;
         return (
             <div>
+                { isFetching && <h4>Fetching...</h4> }
                 { posts &&
                     <PostsList posts={posts} />
                 }
