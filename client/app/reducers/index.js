@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 import {
     REQUEST_POSTS,
-    RECEIVE_POSTS,
+    RECEIVE_NEW_POSTS,
+    RECEIVE_ADDITIONAL_POSTS,
     SET_CURRENT_POST
 } from '../actions'
 
@@ -16,7 +17,12 @@ const postsReducer = ( state = {
             return Object.assign({}, state, {
                 isFetching: true
             })
-        case RECEIVE_POSTS:
+        case RECEIVE_NEW_POSTS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                posts: action.posts
+            }
+        case RECEIVE_ADDITIONAL_POSTS:
             return Object.assign({}, state, {
                 isFetching: false,
                 posts: [...state.posts, ...action.posts]
