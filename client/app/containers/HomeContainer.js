@@ -11,10 +11,9 @@ class HomeContainer extends Component {
     }
 
     render() {
-        const { posts, isFetching } = this.props;
+        const { posts } = this.props;
         return (
             <div>
-                { isFetching && <h4>Fetching...</h4> }
                 { posts &&
                     <PostsList posts={posts} />
                 }
@@ -24,7 +23,6 @@ class HomeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    isFetching: state.isFetching,
     posts: state.posts
 })
 
