@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import {
     REQUEST_POSTS,
     RECEIVE_LATEST_POSTS,
-    RECEIVE_LOAD_MORE_POSTS,
+    RECEIVE_MORE_POSTS,
     RECEIVE_SINGLE_POST,
     RECEIVE_POSTS_ERROR
 } from '../actions'
@@ -27,7 +27,7 @@ const postsReducer = ( state = {
                 gotLatest: Date.now(),
                 nextPage: state.nextPage++
             })
-        case RECEIVE_LOAD_MORE_POSTS:
+        case RECEIVE_MORE_POSTS:
             return Object.assign({}, state, {
                 isFetching: false,
                 posts: [...state.posts, ...action.posts],

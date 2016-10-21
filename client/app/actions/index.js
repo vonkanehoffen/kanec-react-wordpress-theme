@@ -2,7 +2,7 @@ import * as wpApi from '../api/wpApi'
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_LATEST_POSTS = 'RECEIVE_LATEST_POSTS';
-export const RECEIVE_LOAD_MORE_POSTS = 'RECEIVE_LOAD_MORE_POSTS';
+export const RECEIVE_MORE_POSTS = 'RECEIVE_MORE_POSTS';
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
 export const RECEIVE_POSTS_ERROR = 'RECEIVE_POSTS_ERROR';
 
@@ -15,8 +15,8 @@ export const receiveLatestPosts = (posts) => ({
     posts
 })
 
-export const receiveLoadMorePosts = (posts) => ({
-    type: RECEIVE_LOAD_MORE_POSTS,
+export const receiveMorePosts = (posts) => ({
+    type: RECEIVE_MORE_POSTS,
     posts
 })
 
@@ -32,9 +32,22 @@ export const receivePostsError = (error) => ({
 
 // Async Actions
 
-export const getLatestPosts = () => (dispatch, getState) => {
+export const getLatestPosts = () => (dispatch) => {
     dispatch(requestPosts());
     return wpApi.get('posts')
         .then(json => dispatch(receiveLatestPosts(json)))
 }
+
+export const getSinglePost = (slug) => (dispatch) => {
+    dispatch(requestPosts());
+    return wpApi.get('posts', { slug: slug })
+        .then(json => dispatch(receiveSinglePost(json)))
+}
+
+export const getMorePosts = () => (dispatch, getState) => {
+    dispatch(requestPosts());
+    return wpApi.get('posts', { page: getState.nextPage })
+        .then(json => dispatch(receiveMorePosts(json)))
+}
+
 

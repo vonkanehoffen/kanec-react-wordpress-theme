@@ -1,25 +1,28 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import { getPosts } from '../actions'
+import { find } from 'lodash'
+import { getSinglePost } from '../actions'
 import BlogPost from '../components/BlogPost';
 
 class BlogContainer extends Component {
 
     componentDidMount() {
-        const { dispatch, params } = this.props;
-        dispatch(getPosts({
-            slug: params.slug
-        }));
+        const { dispatch, params, posts } = this.props;
+        const currentPost = find(posts, { slug: params.slug });
+        if(!currentPost) {
+            dispatch(getSinglePost({
+                slug: params.slug
+            }));
+        }
     }
 
     render() {
-        const { posts } = this.props
+        const { posts, params } = this.props;
+        const currentPost = find(posts, { slug: params.slug });
         return (
             <div className="posts">
                 <h3>SinglePostContainer</h3>
-                {posts && posts.map( (post, i) => {
-                    return <BlogPost post={post} key={i} expanded={true} />
-                })}
+                {currentPost && <BlogPost post={currentPost} expanded={true} />}
             </div>
         )
     }
