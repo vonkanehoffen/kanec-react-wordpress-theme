@@ -6,8 +6,10 @@ import PostsList from '../components/PostsList'
 class HomeContainer extends Component {
 
     componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(getLatestPosts());
+        const { gotLatest, dispatch } = this.props;
+        if(Date.now() - gotLatest > 3600000) {
+            dispatch(getLatestPosts());
+        }
     }
 
     render() {
@@ -23,7 +25,8 @@ class HomeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts
+    posts: state.posts,
+    gotLatest: state.gotLatest
 })
 
 // const mapDispatchToProps = dispatch => ({
