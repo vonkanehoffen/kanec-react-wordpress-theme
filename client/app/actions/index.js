@@ -32,9 +32,9 @@ export const receivePostsError = (error) => ({
 
 // Async Actions
 
-export const getLatestPosts = () => (dispatch) => {
+export const getLatestPosts = (page) => (dispatch) => {
     dispatch(requestPosts());
-    return wpApi.get('posts')
+    return wpApi.get('posts', { page: page })
         .then(json => dispatch(receiveLatestPosts(json)))
 }
 

@@ -11,7 +11,7 @@ import {
 const postsReducer = ( state = {
     isFetching: false,
     gotLatest: false,
-    nextPage: 1,
+    nextPage: 2,
     error: false,
     posts: []
 }, action ) => {

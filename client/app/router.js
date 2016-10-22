@@ -12,6 +12,7 @@ export default (
     <Router history={browserHistory}>
         <Route component={MainLayout}>
             <Route path="/" component={HomeContainer} />
+            <Route path="/page/:page" component={HomeContainer} />
             <Route path="/blog/:slug" component={SinglePostContainer} />
         </Route>
     </Router>

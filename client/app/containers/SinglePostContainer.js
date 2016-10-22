@@ -10,9 +10,7 @@ class BlogContainer extends Component {
         const { dispatch, params, posts } = this.props;
         const currentPost = find(posts, { slug: params.slug });
         if(!currentPost) {
-            dispatch(getSinglePost({
-                slug: params.slug
-            }));
+            dispatch(getSinglePost(params.slug));
         }
     }
 
