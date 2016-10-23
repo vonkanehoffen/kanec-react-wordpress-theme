@@ -14,10 +14,12 @@ class HomeContainer extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { params, currentPage, loadMorePosts } = this.props;
-        console.log('componentDidUpdate', params.page, currentPage);
+        let { params, currentPage, loadMorePosts, getLatestPosts } = this.props;
+        currentPage = parseInt(currentPage, 10);
         if(params.page > currentPage) {
             loadMorePosts(params.page);
+        } else if(!params.page && currentPage > 1) {
+            getLatestPosts();
         }
     }
 
