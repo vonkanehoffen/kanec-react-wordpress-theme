@@ -1,3 +1,0 @@
-// Bookmarks
-export const REQUEST_BOOKMARKS= 'REQUEST_BOOKMARKS';
-export const RECEIVE_BOOKMARKS = 'RECEIVE_BOOKMARKS';
