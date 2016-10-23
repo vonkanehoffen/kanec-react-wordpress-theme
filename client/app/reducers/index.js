@@ -11,7 +11,7 @@ import {
 const postsReducer = ( state = {
     isFetching: false,
     gotLatest: false,
-    nextPage: 2,
+    currentPage: false,
     error: false,
     posts: []
 }, action ) => {
@@ -25,13 +25,13 @@ const postsReducer = ( state = {
                 isFetching: false,
                 posts: action.posts,
                 gotLatest: Date.now(),
-                nextPage: state.nextPage++
+                currentPage: action.page || 1
             })
         case RECEIVE_MORE_POSTS:
             return Object.assign({}, state, {
                 isFetching: false,
                 posts: [...state.posts, ...action.posts],
-                nextPage: state.nextPage++
+                currentPage: action.page || 1
             })
         case RECEIVE_SINGLE_POST:
             return Object.assign({}, state, {

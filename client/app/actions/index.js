@@ -10,14 +10,16 @@ export const requestPosts = () => ({
     type: REQUEST_POSTS
 })
 
-export const receiveLatestPosts = (posts) => ({
+export const receiveLatestPosts = (posts, page) => ({
     type: RECEIVE_LATEST_POSTS,
-    posts
+    posts,
+    page: page
 })
 
-export const receiveMorePosts = (posts) => ({
+export const receiveMorePosts = (posts, page) => ({
     type: RECEIVE_MORE_POSTS,
-    posts
+    posts,
+    page: page
 })
 
 export const receiveSinglePost = (post) => ({
@@ -35,7 +37,13 @@ export const receivePostsError = (error) => ({
 export const getLatestPosts = (page) => (dispatch) => {
     dispatch(requestPosts());
     return wpApi.get('posts', { page: page })
-        .then(json => dispatch(receiveLatestPosts(json)))
+        .then(json => dispatch(receiveLatestPosts(json, page)))
+}
+
+export const getMorePosts = (page) => (dispatch) => {
+    dispatch(requestPosts());
+    return wpApi.get('posts', { page: page })
+        .then(json => dispatch(receiveMorePosts(json, page)))
 }
 
 export const getSinglePost = (slug) => (dispatch) => {
@@ -43,11 +51,3 @@ export const getSinglePost = (slug) => (dispatch) => {
     return wpApi.get('posts', { slug: slug })
         .then(json => dispatch(receiveSinglePost(json)))
 }
-
-export const getMorePosts = () => (dispatch, getState) => {
-    dispatch(requestPosts());
-    return wpApi.get('posts', { page: getState.nextPage })
-        .then(json => dispatch(receiveMorePosts(json)))
-}
-
-
